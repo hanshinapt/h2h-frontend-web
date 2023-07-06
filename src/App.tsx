@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyle from "@/style/globalStyle";
 import Main from "@/pages/main";
@@ -7,16 +8,23 @@ import GameQuestion from "./pages/gameQuestion";
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <GlobalStyle />
-            <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/welcome" element={<Welcome />} />
-                <Route path="/gameDetail" element={<GameEntry />} />
-                <Route path="/game" element={<GameQuestion />} />
-            </Routes>
-        </BrowserRouter>
+        <AppContainer className="scrollYHidden">
+            <BrowserRouter>
+                <GlobalStyle />
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/welcome" element={<Welcome />} />
+                    <Route path="/gameDetail" element={<GameEntry />} />
+                    <Route path="/game" element={<GameQuestion />} />
+                </Routes>
+            </BrowserRouter>
+        </AppContainer>
     );
 };
 
 export default App;
+
+const AppContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+`;
