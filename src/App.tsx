@@ -27,4 +27,5 @@ export default App;
 const AppContainer = styled.div`
     width: 100vw;
     height: 100vh;
+    font-family: var(--font-regular);
 `;

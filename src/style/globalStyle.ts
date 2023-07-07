@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
             display: none;
         }
     }
+
     .scrollXHidden {
         overflow-x: scroll;
         -ms-overflow-style: none; /* IE and Edge */
@@ -22,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     :root {
+        --font-regular: "GmarketSansMedium";
+        --font-light: "GmarketSansLight";
+        --font-bold: "GmarketSansBold";
+
         --color-primary: #06AE53;
         --color-primary-light: #F0F9F4;
 
