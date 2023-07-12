@@ -5,7 +5,8 @@ const temp = [
     {
         id: "645343c12bb7ffb7fae66665",
         title: "연인을 위한 대화카드",
-        description: "커플끼리 해보면 좋을 대화카드입니다.",
+        description:
+            "커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다.",
         tagIds: ["644ba0fe2bb7ffb7fae66656"],
         imageUrl: "https://h2h-dev.s3.ap-northeast-2.amazonaws.com/love.jpg",
         playedCount: 125,
@@ -19,7 +20,8 @@ const temp = [
     {
         id: "645343c12bb7ffb7fae66666",
         title: "연인을 위한 대화카드",
-        description: "커플끼리 해보면 좋을 대화카드입니다.",
+        description:
+            "커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다. 커플끼리 해보면 좋을 대화카드입니다.",
         tagIds: ["644ba0fe2bb7ffb7fae66656"],
         imageUrl: "https://h2h-dev.s3.ap-northeast-2.amazonaws.com/love.jpg",
         playedCount: 125,
@@ -55,6 +57,18 @@ export const getCategorizedGames = async (
         method: "GET",
         url: "decks",
         params: { sort: type, count: 2 },
+    });
+
+    return [...temp, ...res];
+};
+
+export const getThemeGameList = async (
+    themeId: string,
+): Promise<GameType[]> => {
+    const res = await request({
+        method: "GET",
+        url: "decks",
+        params: { tag: themeId },
     });
 
     return [...temp, ...res];

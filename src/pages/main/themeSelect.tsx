@@ -1,4 +1,5 @@
 import { ThemeTypes } from "@/interface/themeInterface";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 interface ThemeSelectProps {
@@ -6,10 +7,16 @@ interface ThemeSelectProps {
 }
 
 const ThemeSelect = ({ themeTypes }: ThemeSelectProps) => {
+    const navigate = useNavigate();
+
+    const handleClick = ({ id, name }: { id: string; name: string }) => {
+        navigate(`theme/${id}`, { state: { themeName: name } });
+    };
+
     return (
         <ThemeSelectContainer>
             {themeTypes?.map(({ id, name, icon }) => (
-                <ThemeButton key={id}>
+                <ThemeButton key={id} onClick={() => handleClick({ id, name })}>
                     <img src={icon} />
                     <span>{name}</span>
                 </ThemeButton>
@@ -41,5 +48,5 @@ const ThemeButton = styled.button`
     border-radius: 8px;
 
     font-size: 16px;
-    font-weight: bold;
+    font-family: var(--font-regular);
 `;
