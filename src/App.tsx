@@ -5,7 +5,8 @@ import Main from "@/pages/main";
 import Welcome from "@/pages/welcome";
 import Theme from "@/pages/theme";
 import GameEntry from "@/pages/gameEntry";
-import GameQuestion from "./pages/gameQuestion";
+import GameQuestion from "@/pages/gameQuestion";
+import GameEnd from "@/pages/gameEnd";
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     <Route path="/theme/:id" element={<Theme />} />
                     <Route path="/gameDetail" element={<GameEntry />} />
                     <Route path="/game/:id" element={<GameQuestion />} />
+                    <Route path="/gameEnd" element={<GameEnd />} />
                 </Routes>
             </BrowserRouter>
         </AppContainer>
