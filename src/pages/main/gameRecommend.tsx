@@ -2,6 +2,7 @@ import { getCategorizedGames } from "@/api/gameAPI";
 import { CategoryType } from "@/interface/categoryInterface";
 import { GameType } from "@/interface/gameInterface";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 interface GameRecommendProps {
@@ -11,7 +12,12 @@ interface GameRecommendProps {
 
 const GameRecommend = ({ idx, category }: GameRecommendProps) => {
     const { name, desc, type } = category;
+    const navigate = useNavigate();
     const [games, setGames] = useState<GameType[]>();
+
+    const handleClickCard = (id: string) => {
+        navigate(`/game/${id}`);
+    };
 
     const getBGColor = () => {
         const bgColorPallete = [
@@ -36,13 +42,15 @@ const GameRecommend = ({ idx, category }: GameRecommendProps) => {
             <CategoryDesc>{desc}</CategoryDesc>
 
             <CardsSection className="scrollXHidden" bgColor={getBGColor()}>
-                {games?.map(({ id, title, description, imageUrl }) => (
-                    <GameCard key={id}>
-                        <GameImg src={imageUrl} />
-                        <GameTitle>{title}</GameTitle>
-                        <GameDesc>{description}</GameDesc>
-                    </GameCard>
-                ))}
+                {games?.map(
+                    ({ id, title, description, imageUrl }: GameType) => (
+                        <GameCard key={id} onClick={() => handleClickCard(id)}>
+                            <GameImg src={imageUrl} />
+                            <GameTitle>{title}</GameTitle>
+                            <GameDesc>{description}</GameDesc>
+                        </GameCard>
+                    ),
+                )}
             </CardsSection>
         </GameRecommendContainer>
     );
@@ -55,13 +63,15 @@ const GameRecommendContainer = styled.div`
 `;
 
 const CategoryTitle = styled.h1`
-    padding: 0px 20px 2px;
-    font-size: 24px;
-    font-weight: 700;
+    padding: 0px 20px 8px;
+    font-size: 22px;
+    font-family: var(--font-regular);
 `;
 
 const CategoryDesc = styled.p`
     padding: 0 20px;
+    font-size: 15px;
+    font-family: var(--font-light);
 `;
 
 const CardsSection = styled.section<{ bgColor: string }>`
@@ -93,7 +103,6 @@ const GameImg = styled.img`
 const GameTitle = styled.h5`
     width: calc(100px - 10px); // card width - padding
     font-size: 16px;
-    font-weight: bold;
 
     line-height: 120%;
     overflow: hidden;
@@ -106,7 +115,7 @@ const GameTitle = styled.h5`
 const GameDesc = styled.p`
     width: calc(100px - 10px); // card width - padding
     font-size: 14px;
-    font-weight: lighter;
+    font-family: var(--font-light);
 
     line-height: 120%;
     overflow: hidden;

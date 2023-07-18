@@ -17,7 +17,7 @@ const App = () => {
                     <Route path="/welcome" element={<Welcome />} />
                     <Route path="/theme/:id" element={<Theme />} />
                     <Route path="/gameDetail" element={<GameEntry />} />
-                    <Route path="/game" element={<GameQuestion />} />
+                    <Route path="/game/:id" element={<GameQuestion />} />
                 </Routes>
             </BrowserRouter>
         </AppContainer>

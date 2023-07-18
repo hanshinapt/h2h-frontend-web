@@ -52,15 +52,12 @@ const Main = () => {
 export default Main;
 
 const MainContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    padding: 36px 0;
+    padding: 36px 0 0 0;
 `;
 
 const Header = styled.header`
     padding-bottom: 36px;
     font-size: 24px;
-    font-weight: 700;
     line-height: 36px;
     text-align: center;
 `;

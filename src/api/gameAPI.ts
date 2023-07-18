@@ -73,3 +73,12 @@ export const getThemeGameList = async (
 
     return [...temp, ...res];
 };
+
+export const getGameInfo = async (gameId: string): Promise<GameType> => {
+    const res = await request({
+        method: "GET",
+        url: `decks/${gameId}`,
+    });
+
+    return res;
+};
