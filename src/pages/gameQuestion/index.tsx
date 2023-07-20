@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 import LogoIcon from "@/assets/logo.png";
 import { ReactComponent as BackIcon } from "@/assets/back.svg";
 import { ReactComponent as ForwardIcon } from "@/assets/forward.svg";
+import GameExitModal from "./gameExitModal";
 
 const GameQuestion = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const GameQuestion = () => {
     const gameId = location.pathname.split("/").at(-1);
     const [gameQuestions, setGameQuestions] = useState<QuestionType[]>([]);
     const [curIdx, setCurIdx] = useState(0);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const fetchGameInfo = async (gameId: string) => {
         const data = await getGameInfo(gameId);
@@ -21,12 +23,12 @@ const GameQuestion = () => {
 
     const handleClickBackButton = () => {
         if (curIdx > 0) setCurIdx(curIdx - 1);
-        else alert("게임을 나가시겠습니까?");
+        else setIsOpenModal(true);
     };
 
     const handleClickForwardButton = () => {
         if (curIdx < gameQuestions.length - 1) setCurIdx(curIdx + 1);
-        else navigate("/");
+        else navigate("/gameEnd", { state: { gameId } });
     };
 
     useEffect(() => {
@@ -52,6 +54,11 @@ const GameQuestion = () => {
                     <ForwardIcon />
                 </MoveButton>
             </ButtonsSection>
+
+            <GameExitModal
+                isOpen={isOpenModal}
+                onClose={() => setIsOpenModal(false)}
+            />
         </GameQuestionContainer>
     );
 };
